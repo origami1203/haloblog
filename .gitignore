@@ -6,7 +6,10 @@
 .idea
 *.iml
 out
-**/target
-**/src/test
 
+# rebel
 rebel.xml
+
+# maven
+target/
+**/src/test
