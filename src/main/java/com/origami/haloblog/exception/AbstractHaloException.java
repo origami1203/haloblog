@@ -8,13 +8,20 @@ import lombok.NoArgsConstructor;
 /**
  * @author origami1203
  * @date 2020-12-11 21:04
- * @description TODO
+ * @description 抽象异常类
  */
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public abstract class AbstractHaloException extends RuntimeException {
-    private String message;
+
+    public AbstractHaloException(String message) {
+        super(message);
+    }
+
+    public AbstractHaloException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }

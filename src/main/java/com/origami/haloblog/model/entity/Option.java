@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  * @author origami1203
@@ -22,9 +23,11 @@ import javax.persistence.Lob;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@Table(name = "options")
 @Data
 @NoArgsConstructor
 public class Option extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

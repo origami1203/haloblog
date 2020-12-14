@@ -2,10 +2,14 @@ package com.origami.haloblog.utils;
 
 import com.origami.haloblog.exception.BeanUtilsException;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.BeansException;
+import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -65,6 +69,50 @@ public class BeanUtils {
         }
 
         return emptyProperties.toArray(new String[0]);
+    }
+
+    public static void updateProperties(@NonNull Object source, @NonNull Object target) {
+        Assert.notNull(source, "source object must not be null");
+        Assert.notNull(target, "target object must not be null");
+
+        // Set non null properties from source properties to target properties
+        try {
+            org.springframework.beans.BeanUtils.copyProperties(source, target,
+                                                               getEmptyPropertyNames(source));
+        } catch (BeansException e) {
+            throw new BeanUtilsException("Failed to copy properties", e);
+        }
+    }
+
+    /**
+     * 查看指定类是否实现了指定的接口或实现了指定类,若存在,获取该接口的参数化类型(主要用于获取泛型类型)
+     * @param implementClass 是否实现的类
+     * @param targetClass 目标类
+     * @return 指定的参数化类型
+     */
+    public static ParameterizedType getParameterizedType(Class<?> implementClass,
+                                                         Class<?> targetClass) {
+
+        ParameterizedType currentType = null;
+
+        // 获取该类上的所有接口
+        Type[] interfaces = targetClass.getGenericInterfaces();
+
+        for (Type anInterface : interfaces) {
+            if (anInterface instanceof ParameterizedType) {
+                ParameterizedType parameterizedType = (ParameterizedType) anInterface;
+                // 若该类实现了EntityToDTO接口,返回该EntityToDTO接口
+                if ( parameterizedType
+                        .getRawType()
+                        .getTypeName()
+                        .equals(implementClass.getTypeName())) {
+                    currentType = parameterizedType;
+                    break;
+                }
+            }
+        }
+
+        return currentType;
     }
 
 }

@@ -18,6 +18,16 @@ spring:
       ddl-auto: update
     # 显示建表语句
     show-sql: true
+    # 格式化SQL语句
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+
 
 #  flyway:
 #    enabled: false

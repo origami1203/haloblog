@@ -1,9 +1,8 @@
 package com.origami.haloblog.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author origami1203
@@ -12,9 +11,13 @@ import lombok.NoArgsConstructor;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
 public class BeanUtilsException extends AbstractHaloException {
     public BeanUtilsException(String message) {
         super(message);
     }
+
+    public BeanUtilsException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
