@@ -5,7 +5,6 @@ import com.origami.haloblog.model.enums.CommentStatus;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.NonNull;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

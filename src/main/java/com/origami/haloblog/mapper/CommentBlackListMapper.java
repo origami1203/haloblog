@@ -3,8 +3,6 @@ package com.origami.haloblog.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.origami.haloblog.model.entity.CommentBlackList;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
