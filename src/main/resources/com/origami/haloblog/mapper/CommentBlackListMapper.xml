@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.CommentBlackListMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.CommentBlackList">
+    <id column="comment_black_list_id" jdbcType="INTEGER" property="id" />
+    <result column="comment_black_list_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="comment_black_list_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="comment_black_list_description" jdbcType="VARCHAR" property="description" />
+    <result column="comment_black_list_name" jdbcType="VARCHAR" property="name" />
+    <result column="comment_black_list_parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="comment_black_list_slug" jdbcType="VARCHAR" property="slug" />
+    <result column="comment_black_list_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    comment_black_list.id as comment_black_list_id, comment_black_list.create_time as comment_black_list_create_time, 
+    comment_black_list.update_time as comment_black_list_update_time, comment_black_list.description as comment_black_list_description, 
+    comment_black_list.`name` as `comment_black_list_name`, comment_black_list.parent_id as comment_black_list_parent_id, 
+    comment_black_list.slug as comment_black_list_slug, comment_black_list.thumbnail as comment_black_list_thumbnail
+  </sql>
+
+  <update id="updateByIpAddress" parameterType="CommentBlackList">
+    UPDATE comment_black_list SET ban_time= #{banTime} WHERE ip_address = #{ipAddress}
+  </update>
+
+  <select id="findByIpAddress" resultType="CommentBlackList">
+    select
+    <include refid="Base_Column_List"/>
+    from comment_black_list
+    where ip_address = #{ipAddress}
+  </select>
+
+</mapper>

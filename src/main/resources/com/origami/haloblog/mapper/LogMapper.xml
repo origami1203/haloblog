@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.LogMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Log">
+    <id column="log_id" jdbcType="INTEGER" property="id" />
+    <result column="log_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="log_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="log_description" jdbcType="VARCHAR" property="description" />
+    <result column="log_name" jdbcType="VARCHAR" property="name" />
+    <result column="log_parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="log_slug" jdbcType="VARCHAR" property="slug" />
+    <result column="log_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    log.id as log_id, log.create_time as log_create_time, log.update_time as log_update_time, 
+    log.description as log_description, log.`name` as `log_name`, log.parent_id as log_parent_id, 
+    log.slug as log_slug, log.thumbnail as log_thumbnail
+  </sql>
+
+</mapper>

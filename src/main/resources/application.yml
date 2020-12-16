@@ -32,7 +32,9 @@ spring:
 #  flyway:
 #    enabled: false
 
-
+mybatis-plus:
+  mapper-locations: classpath:com/origami/haloblog/mapper/**/*.xml
+  type-aliases-package: classpath:com.origami.haloblog.model.entity
 
 # 日志
 logging:

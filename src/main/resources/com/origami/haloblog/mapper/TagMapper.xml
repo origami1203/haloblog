@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.TagMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Tag">
+    <id column="tag_id" jdbcType="INTEGER" property="id" />
+    <result column="tag_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="tag_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="tag_description" jdbcType="VARCHAR" property="description" />
+    <result column="tag_name" jdbcType="VARCHAR" property="name" />
+    <result column="tag_parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="tag_slug" jdbcType="VARCHAR" property="slug" />
+    <result column="tag_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tag.id as tag_id, tag.create_time as tag_create_time, tag.update_time as tag_update_time, 
+    tag.description as tag_description, tag.`name` as `tag_name`, tag.parent_id as tag_parent_id, 
+    tag.slug as tag_slug, tag.thumbnail as tag_thumbnail
+  </sql>
+
+  <select id="getBySlug" resultType="com.origami.haloblog.model.entity.Tag">
+    select
+        <include refid="Base_Column_List"/>
+    from tag
+    where slug = #{slug}
+  </select>
+
+  <select id="getByName" resultType="com.origami.haloblog.model.entity.Tag">
+    select
+    <include refid="Base_Column_List"/>
+    from tag
+    where name = #{name}
+  </select>
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.PostCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.PostCategory">
+    <id column="post_category_id" jdbcType="INTEGER" property="id" />
+    <result column="post_category_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="post_category_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="post_category_description" jdbcType="VARCHAR" property="description" />
+    <result column="post_category_name" jdbcType="VARCHAR" property="name" />
+    <result column="post_category_parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="post_category_slug" jdbcType="VARCHAR" property="slug" />
+    <result column="post_category_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    post_category.id as post_category_id, post_category.create_time as post_category_create_time, 
+    post_category.update_time as post_category_update_time, post_category.description as post_category_description, 
+    post_category.`name` as `post_category_name`, post_category.parent_id as post_category_parent_id, 
+    post_category.slug as post_category_slug, post_category.thumbnail as post_category_thumbnail
+  </sql>
+
+  <delete id="deleteByCategoryIdAndReturn">
+    delete from post_category where post_category.category_id = #{categoryId}
+  </delete>
+  <delete id="deleteByPostId">
+    delete from post_category where post_category.post_id = #{postId}
+  </delete>
+
+  <select id="findAllCategoryIdsByPostId" resultType="java.lang.Integer">
+    select pc.category_id
+    from post_category pc
+    where pc.post_id = #{postId}
+  </select>
+
+  <select id="findAllPostIdsByCategoryId" resultType="java.lang.Integer">
+    select pc.post_id
+    from post_category pc
+    where pc.category_id = #{categoryId}
+  </select>
+
+  <select id="findAllPostIdsByCategoryIdAndPostStatus" resultType="java.lang.Integer">
+    select pc.post_id
+    from post_category pc
+    join post
+    on pc.post_id = post.id
+    where pc.category_id = #{categoryId} and post.status = #{status}
+  </select>
+
+  <select id="findAllByPostId" resultType="com.origami.haloblog.model.entity.PostCategory">
+    select
+        <include refid="Base_Column_List"/>
+    from post_category pc
+    where pc.post_id = #{postId}
+  </select>
+
+  <select id="findAllByCategoryId" resultType="com.origami.haloblog.model.entity.PostCategory">
+    select
+    <include refid="Base_Column_List"/>
+    from post_category pc
+    where pc.category_id = #{categoryId}
+  </select>
+
+</mapper>

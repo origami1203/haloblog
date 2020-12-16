@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.JournalCommentMapper">
+    <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Comment">
+        <id column="comment_id" jdbcType="INTEGER" property="id" />
+        <result column="comment_create_time" jdbcType="TIMESTAMP" property="create_time" />
+        <result column="comment_update_time" jdbcType="TIMESTAMP" property="update_time" />
+        <result column="comment_description" jdbcType="VARCHAR" property="description" />
+        <result column="comment_name" jdbcType="VARCHAR" property="name" />
+        <result column="comment_parent_id" jdbcType="INTEGER" property="parent_id" />
+        <result column="comment_slug" jdbcType="VARCHAR" property="slug" />
+        <result column="comment_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        comment.id as comment_id, comment.create_time as comment_create_time, comment.update_time as comment_update_time,
+    comment.description as comment_description, comment.`name` as `comment_name`, comment.parent_id as comment_parent_id,
+    comment.slug as comment_slug, comment.thumbnail as comment_thumbnail
+    </sql>
+
+
+
+</mapper>

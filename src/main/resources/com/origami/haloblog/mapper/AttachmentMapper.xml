@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.AttachmentMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Attachment">
+    <id column="attachment_id" jdbcType="INTEGER" property="id" />
+    <result column="attachment_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="attachment_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="attachment_file_key" jdbcType="VARCHAR" property="file_key" />
+    <result column="attachment_height" jdbcType="INTEGER" property="height" />
+    <result column="attachment_media_type" jdbcType="VARCHAR" property="media_type" />
+    <result column="attachment_name" jdbcType="VARCHAR" property="name" />
+    <result column="attachment_path" jdbcType="VARCHAR" property="path" />
+    <result column="attachment_size" jdbcType="BIGINT" property="size" />
+    <result column="attachment_suffix" jdbcType="VARCHAR" property="suffix" />
+    <result column="attachment_thumb_path" jdbcType="VARCHAR" property="thumb_path" />
+    <result column="attachment_type" jdbcType="INTEGER" property="type" />
+    <result column="attachment_width" jdbcType="INTEGER" property="width" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    attachment.id as attachment_id, attachment.create_time as attachment_create_time,
+    attachment.update_time as attachment_update_time, attachment.file_key as attachment_file_key, 
+    attachment.height as attachment_height, attachment.media_type as attachment_media_type, 
+    attachment.`name` as `attachment_name`, attachment.`path` as `attachment_path`, attachment.`size` as `attachment_size`, 
+    attachment.suffix as attachment_suffix, attachment.thumb_path as attachment_thumb_path, 
+    attachment.`type` as `attachment_type`, attachment.width as attachment_width
+  </sql>
+
+
+  <select id="findAllMediaType" resultType="java.lang.String">
+    select distinct attachment.media_type from attachment
+  </select>
+
+  <select id="findAllType" resultType="com.origami.haloblog.model.enums.AttachmentType">
+    select distinct attachment.type from attachment
+  </select>
+
+  <select id="countByPath" resultType="java.lang.Long">
+    select count(path) from attachment where path = #{path}
+  </select>
+
+
+</mapper>

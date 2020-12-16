@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.base.BasePostMapper">
+    <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Post">
+        <id column="post_id" jdbcType="INTEGER" property="id" />
+        <result column="post_create_time" jdbcType="TIMESTAMP" property="create_time" />
+        <result column="post_update_time" jdbcType="TIMESTAMP" property="update_time" />
+        <result column="post_description" jdbcType="VARCHAR" property="description" />
+        <result column="post_name" jdbcType="VARCHAR" property="name" />
+        <result column="post_parent_id" jdbcType="INTEGER" property="parent_id" />
+        <result column="post_slug" jdbcType="VARCHAR" property="slug" />
+        <result column="post_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        post.id as post_id, post.create_time as post_create_time, post.update_time as post_update_time,
+    post.description as post_description, post.`name` as `post_name`, post.parent_id as post_parent_id,
+    post.slug as post_slug, post.thumbnail as post_thumbnail
+    </sql>
+
+    <update id="updateVisitors">
+        update post p set p.visits = #{visits} where p.id = #{postId}
+    </update>
+
+    <update id="updateLikes">
+        update post p set p.likes = #{likes} where p.id = #{postId}
+    </update>
+    <update id="updateOriginalContent">
+        update post p set p.original_content = #{content} where p.id = #{postId}
+    </update>
+    <update id="updateStatus">
+        update post p set p.status = #{status} where p.id = #{postId}
+    </update>
+    <update id="updateFormatContent">
+        update post p set p.format_content = #{formatContent} where p.id = #{postId}
+    </update>
+
+    <select id="findAllByStatus" resultType="Post">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where post.status = #{status}
+    </select>
+
+    <select id="findAllByStatusAndSort" resultType="Post">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where post.status = #{status}
+        order by ${sort}
+    </select>
+
+    <select id="getBySlugAndStatus" resultType="Post">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where post.slug = #{slug} and post.status = #{status}
+    </select>
+    <select id="getByIdAndStatus" resultType="Post">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where post.id = #{id} and post.status = #{status}
+    </select>
+
+    <select id="getBySlug" resultType="Post">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where post.slug = #{slug}
+    </select>
+
+</mapper>

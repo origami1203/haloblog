@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.OptionsMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Option">
+    <id column="options_id" jdbcType="INTEGER" property="id" />
+    <result column="options_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="options_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="options_description" jdbcType="VARCHAR" property="description" />
+    <result column="options_name" jdbcType="VARCHAR" property="name" />
+    <result column="options_parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="options_slug" jdbcType="VARCHAR" property="slug" />
+    <result column="options_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    options.id as options_id, options.create_time as options_create_time, options.update_time as options_update_time, 
+    options.description as options_description, options.`name` as `options_name`, options.parent_id as options_parent_id, 
+    options.slug as options_slug, options.thumbnail as options_thumbnail
+  </sql>
+  <delete id="deleteByKey">
+    delete from options where option_key = #{optionKey}
+  </delete>
+  <select id="findByKey" resultType="com.origami.haloblog.model.entity.Option">
+    select
+        <include refid="Base_Column_List"/>
+    from options
+    where option_key = #{optionKey}
+  </select>
+
+
+</mapper>

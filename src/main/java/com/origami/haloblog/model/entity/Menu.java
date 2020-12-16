@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Menu extends BaseEntity {
     @Id

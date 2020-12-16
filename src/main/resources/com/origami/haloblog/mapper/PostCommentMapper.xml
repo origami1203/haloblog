@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.PostCommentMapper">
+    <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Comment">
+        <id column="comment_id" jdbcType="BIGINT" property="id" />
+        <result column="comment_type" jdbcType="INTEGER" property="type" />
+        <result column="comment_create_time" jdbcType="TIMESTAMP" property="create_time" />
+        <result column="comment_update_time" jdbcType="TIMESTAMP" property="update_time" />
+        <result column="comment_allow_notification" jdbcType="BIT" property="allow_notification" />
+        <result column="comment_author" jdbcType="VARCHAR" property="author" />
+        <result column="comment_author_url" jdbcType="VARCHAR" property="author_url" />
+        <result column="comment_content" jdbcType="VARCHAR" property="content" />
+        <result column="comment_email" jdbcType="VARCHAR" property="email" />
+        <result column="comment_gravatar_md5" jdbcType="VARCHAR" property="gravatar_md5" />
+        <result column="comment_ip_address" jdbcType="VARCHAR" property="ip_address" />
+        <result column="comment_is_admin" jdbcType="BIT" property="is_admin" />
+        <result column="comment_parent_id" jdbcType="BIGINT" property="parent_id" />
+        <result column="comment_post_id" jdbcType="INTEGER" property="post_id" />
+        <result column="comment_status" jdbcType="INTEGER" property="status" />
+        <result column="comment_top_priority" jdbcType="INTEGER" property="top_priority" />
+        <result column="comment_user_agent" jdbcType="VARCHAR" property="user_agent" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        comment.id as comment_id, comment.`type` as `comment_type`, comment.create_time as comment_create_time,
+    comment.update_time as comment_update_time, comment.allow_notification as comment_allow_notification,
+    comment.author as comment_author, comment.author_url as comment_author_url, comment.content as comment_content,
+    comment.email as comment_email, comment.gravatar_md5 as comment_gravatar_md5, comment.ip_address as comment_ip_address,
+    comment.is_admin as comment_is_admin, comment.parent_id as comment_parent_id, comment.post_id as comment_post_id,
+    comment.`status` as `comment_status`, comment.top_priority as comment_top_priority,
+    comment.user_agent as comment_user_agent
+    </sql>
+
+</mapper>

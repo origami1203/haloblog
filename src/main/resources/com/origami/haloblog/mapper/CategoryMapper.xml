@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Category">
+    <id column="category_id" jdbcType="INTEGER" property="id" />
+    <result column="category_create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="category_update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="category_description" jdbcType="VARCHAR" property="description" />
+    <result column="category_name" jdbcType="VARCHAR" property="name" />
+    <result column="category_parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="category_slug" jdbcType="VARCHAR" property="slug" />
+    <result column="category_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    category.id as category_id, category.create_time as category_create_time, category.update_time as category_update_time, 
+    category.description as category_description, category.`name` as `category_name`, 
+    category.parent_id as category_parent_id, category.slug as category_slug, category.thumbnail as category_thumbnail
+  </sql>
+
+  <select id="countByName" resultType="java.lang.Long">
+    select count(name) from category where name =#{name}
+  </select>
+
+  <select id="countById" resultType="java.lang.Long">
+    select count(id) from category where name =#{id}
+  </select>
+
+  <select id="getBySlug" resultType="com.origami.haloblog.model.entity.Category">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    where slug = #{slug}
+  </select>
+
+  <select id="getByName" resultType="com.origami.haloblog.model.entity.Category">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    where name = #{name}
+  </select>
+
+  <select id="findByParentId" resultType="com.origami.haloblog.model.entity.Category">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    where parent_id = #{parent_id}
+  </select>
+
+
+</mapper>

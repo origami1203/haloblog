@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.origami.haloblog.mapper.PostMetaMapper">
+    <resultMap id="BaseResultMap" type="com.origami.haloblog.model.entity.Meta">
+        <id column="meta_id" jdbcType="INTEGER" property="id" />
+        <result column="meta_create_time" jdbcType="TIMESTAMP" property="create_time" />
+        <result column="meta_update_time" jdbcType="TIMESTAMP" property="update_time" />
+        <result column="meta_description" jdbcType="VARCHAR" property="description" />
+        <result column="meta_name" jdbcType="VARCHAR" property="name" />
+        <result column="meta_parent_id" jdbcType="INTEGER" property="parent_id" />
+        <result column="meta_slug" jdbcType="VARCHAR" property="slug" />
+        <result column="meta_thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        meta.id as meta_id, meta.create_time as meta_create_time, meta.update_time as meta_update_time,
+    meta.description as meta_description, meta.`name` as `meta_name`, meta.parent_id as meta_parent_id,
+    meta.slug as meta_slug, meta.thumbnail as meta_thumbnail
+    </sql>
+
+</mapper>
