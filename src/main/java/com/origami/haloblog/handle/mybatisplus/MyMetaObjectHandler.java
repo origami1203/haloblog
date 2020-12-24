@@ -1,4 +1,4 @@
-package com.origami.haloblog.handle.entity;
+package com.origami.haloblog.handle.mybatisplus;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
