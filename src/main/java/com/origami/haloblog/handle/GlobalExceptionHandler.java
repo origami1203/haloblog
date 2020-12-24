@@ -1,4 +1,4 @@
-package com.origami.haloblog.handle.mybatisplus;
+package com.origami.haloblog.handle;
 
 import com.origami.haloblog.model.support.ResponseBean;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
